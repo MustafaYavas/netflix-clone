@@ -1,5 +1,6 @@
 import styles from './SignupForm.module.css';
 import { createUser } from '../../store/userApiCalls';
+import { userActions } from '../../store/user-slice';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +36,10 @@ const SignupForm = () => {
 
         const datas = await res.json();
         datas.data.rows.forEach(row => {
-            if(row.columns[2].cell_value === email) return navigate('/signin');
+            if(row.columns[2].cell_value === email) {
+                dispatch(userActions.setEmail(email))
+                return navigate('/signin');
+            }
         })
 
         setShowPasswordInput(true)

@@ -13,6 +13,9 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
         },
+        setEmail(state, action) {
+            state.email = action.payload;
+        },
         loginUser(state, action) {
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
