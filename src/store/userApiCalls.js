@@ -1,7 +1,5 @@
 import { userActions } from './user-slice';
 
-import { Navigate } from 'react-router-dom';
-
 export const createUser = async(user, dispatch) => {
     try {
         await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {

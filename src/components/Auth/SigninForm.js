@@ -3,16 +3,17 @@ import { signinUser } from '../../store/userApiCalls';
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SigninForm = () => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(user.email || '');
     const [password, setPassword] = useState('');
     const [emailEmptyWarn, setEmailEmptyWarn] = useState(false);
     const [passwordEmptyWarn, setPasswordEmptyWarn] = useState(false);
-
+    
     const changeEmailHandler = (e) => {
         if(e.target.value.length === 0) setEmailEmptyWarn(true)
         else setEmailEmptyWarn(false);

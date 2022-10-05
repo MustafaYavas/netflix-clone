@@ -13,6 +13,7 @@ const userSlice = createSlice({
         setUser(state, action) {
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
+            state.isSignin = true;
         },
         setSignin(state, action) {
             state.isSignin = false;

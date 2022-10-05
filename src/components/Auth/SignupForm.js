@@ -27,22 +27,26 @@ const SignupForm = () => {
     const checkUserHandler = async() => {
         if(email.length === 0) return setError(true);
 
-        const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
-            method: 'GET',
-            headers: {
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
-            }
-        });
+        try {
+            const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
+                method: 'GET',
+                headers: {
+                    'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                }
+            });
 
-        const datas = await res.json();
-        datas.data.rows.forEach(row => {
-            if(row.columns[2].cell_value === email) {
-                dispatch(userActions.setSignin(email))
-                return navigate('/signin');
-            }
-        })
-
-        setShowPasswordInput(true)
+            const datas = await res.json();
+            datas.data.rows.forEach(row => {
+                if(row.columns[2].cell_value === email) {
+                    dispatch(userActions.setSignin(email))
+                    return navigate('/signin');
+                }
+            })
+            setShowPasswordInput(true);
+        } catch (error) {
+            console.log('Something went wrong while signing up!')
+        }
+        
     }
 
     const signupHandler = async() => {
