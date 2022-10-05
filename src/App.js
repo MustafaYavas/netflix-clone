@@ -1,13 +1,14 @@
-import Home from './pages/Home';
-import Signup from './pages/Signup';
+import Browse from './pages/Browse';
+import Signup from './pages/Signup/Signup';
 import Login from './pages/Login';
 
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 
 const App = () => {
     return (
         <Routes>
-            <Route path='/' element={<Home />}/>
+            <Route path='/' element={<Navigate replace to='/signup' />} />
+            <Route path='/browse' element={<Browse />}/>
             <Route path='/signup' element={<Signup />}/>
             <Route path='/login' element={<Login />}/>
         </Routes>
