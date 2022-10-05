@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialUserState = {
-    email: '',
-    movieList: []
+    email: null,
+    movieList: [],
+    isSignin: false
 }
 
 const userSlice = createSlice({
@@ -13,12 +14,14 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
         },
-        setEmail(state, action) {
+        setSignin(state, action) {
+            state.isSignin = false;
             state.email = action.payload;
         },
         signinUser(state, action) {
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
+            state.isSignin = true;
         }
     }
 })

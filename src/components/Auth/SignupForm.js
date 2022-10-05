@@ -37,7 +37,7 @@ const SignupForm = () => {
         const datas = await res.json();
         datas.data.rows.forEach(row => {
             if(row.columns[2].cell_value === email) {
-                dispatch(userActions.setEmail(email))
+                dispatch(userActions.setSignin(email))
                 return navigate('/signin');
             }
         })
