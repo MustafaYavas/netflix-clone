@@ -1,7 +1,13 @@
-const Home = () => {
+import { useSelector } from 'react-redux';
+
+const Browse = () => {
+    const user = useSelector(state => state.user);
+
+    console.log(user)
+
     return (
-        <div>Home</div>
+        <div>Browse</div>
     )
 }
 
-export default Home;
+export default Browse;

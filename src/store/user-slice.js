@@ -16,7 +16,7 @@ const userSlice = createSlice({
         setEmail(state, action) {
             state.email = action.payload;
         },
-        loginUser(state, action) {
+        signinUser(state, action) {
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
         }
