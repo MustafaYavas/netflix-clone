@@ -1,6 +1,6 @@
 import Browse from './pages/Browse';
 import Signup from './pages/Signup/Signup';
-import Signin from './pages/Signin';
+import Signin from './pages/Signin/Signin';
 
 import { Navigate, Routes, Route } from 'react-router-dom';
 

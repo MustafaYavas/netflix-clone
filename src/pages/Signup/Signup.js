@@ -1,10 +1,11 @@
 import Header from '../../components/Auth/Header';
 import SignupForm from '../../components/Auth/SignupForm';
 import styles from './Signup.module.css';
+import PageBackground from '../../components/Layout/PageBackground';
 
 const Signup = () => {
     return (
-        <div className={styles.container}>
+        <PageBackground>
             <div className={styles.content}>
                 <Header />
                 <div className={styles.wrapper}>
@@ -18,7 +19,7 @@ const Signup = () => {
                     
                 </div>
             </div>
-        </div>
+        </PageBackground>
     )
 }
 
