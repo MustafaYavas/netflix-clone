@@ -1,6 +1,6 @@
 import Browse from './pages/Browse';
 import Signup from './pages/Signup/Signup';
-import Login from './pages/Login';
+import Signin from './pages/Signin';
 
 import { Navigate, Routes, Route } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const App = () => {
             <Route path='/' element={<Navigate replace to='/signup' />} />
             <Route path='/browse' element={<Browse />}/>
             <Route path='/signup' element={<Signup />}/>
-            <Route path='/login' element={<Login />}/>
+            <Route path='/signin' element={<Signin />}/>
         </Routes>
     )
 }

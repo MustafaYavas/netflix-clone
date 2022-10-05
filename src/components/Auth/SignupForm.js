@@ -35,7 +35,7 @@ const SignupForm = () => {
 
         const datas = await res.json();
         datas.data.rows.forEach(row => {
-            if(row.columns[2].cell_value === email) return navigate('/login');
+            if(row.columns[2].cell_value === email) return navigate('/signin');
         })
 
         setShowPasswordInput(true)
