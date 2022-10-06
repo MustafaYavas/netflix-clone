@@ -23,6 +23,12 @@
     outline: none;
 }
 
+.error {
+    background-color: #e87c03;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    line-height: 1;
+}
 
 .button {
     margin-top: 1.5rem;

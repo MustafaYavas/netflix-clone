@@ -1,5 +1,5 @@
 import styles from './SinginForm.module.css';
-import { signinUser } from '../../store/userApiCalls';
+import { userActions } from '../../store/user-slice';
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,6 +13,7 @@ const SigninForm = () => {
     const [password, setPassword] = useState('');
     const [emailEmptyWarn, setEmailEmptyWarn] = useState(false);
     const [passwordEmptyWarn, setPasswordEmptyWarn] = useState(false);
+    const [error, setError] = useState(false);
     
     const changeEmailHandler = (e) => {
         if(e.target.value.length === 0) setEmailEmptyWarn(true)
@@ -26,13 +27,45 @@ const SigninForm = () => {
         setPassword(e.target.value);
     }
 
-    const signinHandler = () => {
+    const signinHandler = async() => {
         if(email.length === 0) setEmailEmptyWarn(true);
         if(password.length === 0) setPasswordEmptyWarn(true);
+        
+        let userInfos = null;
+        let userList = null;
 
-        signinUser({ email }, dispatch)
+        try {
+            const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
+                method: 'GET',
+                headers: {
+                    'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                }
+            });
+    
+            const datas = await res.json();
+        
+            datas.data.rows.forEach(row => {
+                if(row.columns[2].cell_value === email) {
+                    userInfos = row;
+                    userList = row.columns[0].cell_value.split(',')
+                }    
+            })
+    
+            if(userInfos.columns[1].cell_value !== password) throw new Error('Wrong password! Please try again');
+            
+            if(userInfos !== null) {
+                dispatch(userActions.signinUser({
+                    email: userInfos.columns[2].cell_value,
+                    movieList: userList,
+                }));
+            }
 
-        navigate('/browse');
+            navigate('/browse');
+        } catch (error) {
+            setError(true);
+            console.log(error);
+        }
+        
     }
 
     const navigateHandler = () => {
@@ -44,6 +77,14 @@ const SigninForm = () => {
             <h2>Sign In</h2>
 
             <div className={styles.form}>
+                {
+                    error &&
+                    <div className={styles.error}>
+                        <span className='fw-bolder'>Incorrect password. </span> 
+                        Please try again or you can &nbsp;
+                        <span className='text-decoration-underline'>reset your password.</span>
+                    </div>
+                }
                 <input 
                     className={`${emailEmptyWarn ? styles['warn-input'] : ''}`}
                     type='text' 
@@ -74,7 +115,7 @@ const SigninForm = () => {
                 {   passwordEmptyWarn &&
                     <p 
                         className={styles.warn}
-                        style={emailEmptyWarn ? {visibility: 'visible'} : {visibility: 'hidden'}}
+                        style={passwordEmptyWarn ? {visibility: 'visible'} : {visibility: 'hidden'}}
                     >
                         Your password must contain between 4 and 60 characters.
                     </p>
