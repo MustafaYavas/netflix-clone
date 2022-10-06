@@ -1,4 +1,4 @@
-import Browse from './pages/Browse';
+import Browse from './pages/Browse/Browse';
 import Signup from './pages/Signup/Signup';
 import Signin from './pages/Signin/Signin';
 

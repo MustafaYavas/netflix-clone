@@ -1,0 +1,90 @@
+.navbar {
+    width: 100%;
+    color: white;
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.5) 50%);
+    transition: .5s ease-in-out;
+}
+
+.scrolled {
+    background-color: #141414;
+    transition: .5s ease-in-out;
+}
+
+.container {
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+}
+
+.left {
+    display: flex;
+    align-items: center; 
+}
+
+.left img {
+    height: 3rem;
+    margin-right: 3rem;
+}
+
+.left span {
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.right .icon {
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.right img {
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+.right .profile:hover .options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    border: 1px solid rgb(211, 208, 208);
+}
+
+.right .profile .options {
+    background-color: #141414;
+    display: none;
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
+    padding: 1rem; 
+}
+
+.right .profile .options span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.right .profile .options .option-icons {
+    margin-right: 1rem;
+}
+
+.options p {
+    text-align: center;
+    padding: 1rem 0 0 0;
+    margin: .5rem 0 0 0;
+    border-top: 1px solid rgb(211, 208, 208);
+    cursor: pointer;
+}
+
+.options p:hover {
+    text-decoration: underline;
+}

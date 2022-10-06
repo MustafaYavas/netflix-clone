@@ -1,0 +1,9 @@
+.links {
+    list-style-type: none;
+    gap: 2rem;
+}
+
+.links li a{
+    color: white;
+    text-decoration: none;
+}
