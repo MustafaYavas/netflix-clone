@@ -6,31 +6,29 @@ import { IoNotifications } from 'react-icons/io5';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { BsPencil, BsPerson, BsQuestionCircle } from 'react-icons/bs';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const navigate = useNavigate();
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => window.onscroll = null;
     }
 
-    console.log()
-
     return (
         <div className={`${isScrolled ? `${styles.navbar} ${styles.scrolled}` : styles.navbar}`}>
             <div className={styles.container}>
                 <div className={styles.left}>
                     <img 
-                        // src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png' 
                         src={logo}
                         alt='logo' 
                     />
-                    <span>Home</span>
+                    <span onClick={() => { navigate('/browse') }}>Home</span>
                     <span>TV Shows</span>
                     <span>Movies</span>
-                    <span>My List</span>
-                    {/* <NavbarLinks /> */}
+                    <span onClick={() => { navigate('/browse/my-list') }}>My List</span>
                 </div>
 
                 <div className={styles.right}>

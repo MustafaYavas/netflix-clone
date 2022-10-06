@@ -1,0 +1,17 @@
+.my-list {
+    background-color: #141414;
+    color: white;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    padding-top: 8rem;
+}
+
+.my-list h2 {
+    padding: 0 3rem;
+}
+
+.container {
+    padding: 0 3rem;
+    display: flex;
+}
