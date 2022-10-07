@@ -1,15 +1,20 @@
 import styles from './ListItem.module.css';
+import { addMovie } from '../../../store/userApiCalls';
 
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { IoMdAddCircle } from 'react-icons/io';
 import { BiLike, BiDislike } from 'react-icons/bi';
 import { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ListItem = (props) => {
     const [isHovered, setIsHovered] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     const addToListHandler = () => {
-        console.log(props)
+        addMovie(props.id, user.email, dispatch)
     }
 
     return (
@@ -27,7 +32,10 @@ const ListItem = (props) => {
                     <div className={styles['item-info']}>
                         <div className={styles.icons}>
                             <BsFillPlayCircleFill className={styles.icon}/>
-                            <IoMdAddCircle className={styles.icon} onClick={addToListHandler}/>
+                            <IoMdAddCircle className={styles.icon} onClick={addToListHandler} data-tip data-for='tooltip'/>
+                            <ReactTooltip id='tooltip' place='top' effect='solid'>
+                                Add to My List
+                            </ReactTooltip>
                             <BiLike className={styles.icon}/>
                             <BiDislike className={styles.icon}/>
                         </div>

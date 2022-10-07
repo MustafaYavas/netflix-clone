@@ -23,6 +23,17 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
+        },
+        addMovieToList(state, action) {
+            const movieId = action.payload;
+            const isExist = state.movieList.find((item) => (item === movieId));
+
+            if(!isExist) state.movieList.push(movieId);            
+        },
+        removeMovieFromList(state, action) {
+            const movieId = action.payload;
+            const newList = state.movieList.filter(item => (item !== movieId))
+            state.movieList = newList;
         }
     }
 })

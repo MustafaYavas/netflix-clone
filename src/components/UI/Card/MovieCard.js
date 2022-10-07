@@ -1,18 +1,21 @@
 import styles from './MovieCard.module.css';
+import { removeMovie } from '../../../store/userApiCalls';
 
 import { useState } from 'react';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
 import { TiTick } from 'react-icons/ti';
 import { BiLike, BiDislike } from 'react-icons/bi';
 import ReactTooltip from 'react-tooltip';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MovieCard = (props) => {
     const [isHovered, setIsHovered] = useState(false);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     const removeToListHandler = () => {
-
+        removeMovie(props.id, user.email, dispatch)
     }
-
     return (
         <div 
             className={styles.card}
@@ -39,7 +42,7 @@ const MovieCard = (props) => {
                     <div className={styles.genres}>
                         {
                             props.genres.map((genre, i) => (
-                                <span> {i>0 ? <span>&nbsp; &#x2022; &nbsp;</span> : ''} {genre.name} </span>
+                                <span key={i}> {i>0 ? <span>&nbsp; &#x2022; &nbsp;</span> : ''} {genre.name} </span>
                             ))
                         }
                     </div>
