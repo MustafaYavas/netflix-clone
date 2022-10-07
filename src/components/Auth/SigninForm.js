@@ -13,7 +13,7 @@ const SigninForm = () => {
     const [password, setPassword] = useState('');
     const [emailEmptyWarn, setEmailEmptyWarn] = useState(false);
     const [passwordEmptyWarn, setPasswordEmptyWarn] = useState(false);
-    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
     
     const changeEmailHandler = (e) => {
         if(e.target.value.length === 0) setEmailEmptyWarn(true)
@@ -28,6 +28,7 @@ const SigninForm = () => {
     }
 
     const signinHandler = async() => {
+        setErrorMessage(null)
         if(email.length === 0) setEmailEmptyWarn(true);
         if(password.length === 0) setPasswordEmptyWarn(true);
         
@@ -50,8 +51,9 @@ const SigninForm = () => {
                     userList = row.columns[0].cell_value.split(',')
                 }    
             })
-    
-            if(userInfos.columns[1].cell_value !== password) throw new Error('Wrong password! Please try again');
+
+            if(userInfos === null) throw new Error('Wrong email!');
+            if(userInfos.columns[1].cell_value !== password) throw new Error('Wrong password!');
             
             if(userInfos !== null) {
                 dispatch(userActions.signinUser({
@@ -62,8 +64,30 @@ const SigninForm = () => {
 
             navigate('/browse');
         } catch (error) {
-            setError(true);
-            console.log(error);
+            if(error.message === 'Wrong password!') {
+                setErrorMessage(
+                    <>
+                        <span className='fw-bolder'>Incorrect password. </span> 
+                        Please try again or you can &nbsp;
+                        <span className='text-decoration-underline'>reset your password.</span>
+                    </>
+                )
+            } else {
+                setErrorMessage(
+                    <>
+                        <span>
+                            Sorry, we can't find an account with this email address. Please try again or &nbsp;
+                        </span> 
+                        <span 
+                            className='text-decoration-underline'
+                            role='button'
+                            onClick={() => { navigate('/signup') }}
+                        >
+                            create a new account
+                        </span>
+                    </>
+                )
+            }            
         }
         
     }
@@ -78,11 +102,9 @@ const SigninForm = () => {
 
             <div className={styles.form}>
                 {
-                    error &&
+                    errorMessage &&
                     <div className={styles.error}>
-                        <span className='fw-bolder'>Incorrect password. </span> 
-                        Please try again or you can &nbsp;
-                        <span className='text-decoration-underline'>reset your password.</span>
+                        { errorMessage }
                     </div>
                 }
                 <input 

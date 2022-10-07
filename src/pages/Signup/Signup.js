@@ -1,4 +1,4 @@
-import Header from '../../components/Auth/Header';
+import Header from '../../components/UI/Header/Header';
 import SignupForm from '../../components/Auth/SignupForm';
 import styles from './Signup.module.css';
 import PageBackground from '../../components/Layout/PageBackground';

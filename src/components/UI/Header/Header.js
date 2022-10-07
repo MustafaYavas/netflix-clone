@@ -1,4 +1,4 @@
-import logo from '../../assets/logo.png';
+import logo from '../../../assets/logo.png';
 import styles from './Header.module.css';
 
 import { useNavigate } from 'react-router-dom';
@@ -11,9 +11,12 @@ const Header = (props) => {
             <div className={styles.logo}>
                 <img src={logo} alt='logo' />
             </div>
-            <button onClick={() => navigate(props.login ? '/login' : '/signup')}>
-                {props.login ? 'Log In' : 'Sign In'}
-            </button>
+            {
+                window.location.pathname !== '/signin' &&
+                <button onClick={() => navigate('/signin')}>
+                    {props.login ? 'Log In' : 'Sign In'}
+                </button>
+            }
         </header>
     )
 }

@@ -1,5 +1,5 @@
 import PageBackground from '../../components/Layout/PageBackground';
-import Header from '../../components/Auth/Header';
+import Header from '../../components/UI/Header/Header';
 import styles from './Signin.module.css';
 import SigninForm from '../../components/Auth/SigninForm';
 

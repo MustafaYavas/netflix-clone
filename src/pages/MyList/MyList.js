@@ -13,6 +13,7 @@ const MyList = () => {
         const getMovies = async() => {
             let datas = [];
             for(let i=0; i<movieList.length; i++) {
+                if(movieList[i] === '') continue;
                 const res = await fetch(`https://api.themoviedb.org/3/movie/${movieList[i]}?api_key=2aebef63e3aa01d0a8b8c81bae93b010&language=en-US`)
                 const data = await res.json();
                 datas.push(data);
