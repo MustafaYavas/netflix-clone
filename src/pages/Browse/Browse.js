@@ -1,9 +1,9 @@
 import styles from './Browse.module.css';
 import Navbar from '../../components/UI/Navbar/Navbar';
-import { useEffect, useState } from 'react';
-
 import Featured from '../../components/UI/Featured/Featured';
 import List from '../../components/UI/List/List';
+
+import { useEffect, useState } from 'react';
 
 const Browse = () => {
     const [popularMovies, setPopularMovies] = useState([])
@@ -30,17 +30,17 @@ const Browse = () => {
             const upcomingDatas = await upcoming.json();
             setUpcomingMovies(upcomingDatas.results.slice(0,10));
         }
-        getMovies()
+        getMovies();
     }, [])
     
     return (
         <div className={styles.browse}>
             <Navbar />
             <Featured />
-            <List movies={popularMovies}/>
-            <List movies={topRatedMovies}/>
-            <List movies={playingMovies}/>
-            <List movies={upcomingMovies}/>
+            <List movies={popularMovies} title={'Popular'}/>
+            <List movies={topRatedMovies} title={'Top Rated'}/>
+            <List movies={playingMovies} title={'Playing'}/>
+            <List movies={upcomingMovies} title={'Upcımşng'}/>
         </div>
     )
 }

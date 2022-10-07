@@ -41,6 +41,7 @@ export const createUser = async(user, dispatch) => {
     }
 }
 
+
 export const addMovie = async(movie, user, dispatch) => {
     try {
         const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
@@ -50,11 +51,14 @@ export const addMovie = async(movie, user, dispatch) => {
             }
         });
         const datas = await res.json();
+        
         let rowDatas = {};
         datas.data.rows.forEach(row => {
             if(row.columns[2].cell_value === user) rowDatas = row;           
         })
-
+        
+        let newList = rowDatas.columns[0].cell_value === '' ? `${movie}` : `${rowDatas.columns[0].cell_value},${movie}`;
+        
         await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'PUT',
             headers: {
@@ -68,7 +72,7 @@ export const addMovie = async(movie, user, dispatch) => {
                         "columns": [
                             {
                                 "column_id": rowDatas.columns[0].column_id,
-                                "update_cell_data": `${rowDatas.columns[0].cell_value},${movie}` 
+                                "update_cell_data": newList
                             }
                         ]
                     },
@@ -96,9 +100,8 @@ export const removeMovie = async(movie, user, dispatch) => {
             if(row.columns[2].cell_value === user) rowDatas = row;           
         })
         
-        let newList = rowDatas.columns[0].cell_value.split(',').filter(item => (item !== movie.toString()))
+        let newList = rowDatas.columns[0].cell_value.split(',').filter(item => (item !== movie.toString()));
         
-
         await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'PUT',
             headers: {
@@ -119,8 +122,7 @@ export const removeMovie = async(movie, user, dispatch) => {
                 ]
             })
         })
-
-        dispatch(userActions.removeMovieFromList(movie.toString()))
+        dispatch(userActions.removeMovieFromList(movie))
     } catch (error) {
         console.log(error);
     }

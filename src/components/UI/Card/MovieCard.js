@@ -14,8 +14,9 @@ const MovieCard = (props) => {
     const user = useSelector(state => state.user);
 
     const removeToListHandler = () => {
-        removeMovie(props.id, user.email, dispatch)
+        removeMovie(props.id, user.email, dispatch);
     }
+
     return (
         <div 
             className={styles.card}

@@ -69,7 +69,7 @@ const SigninForm = () => {
     }
 
     const navigateHandler = () => {
-        navigate('/signup')
+        navigate('/signup');
     }
 
     return (
@@ -151,4 +151,4 @@ const SigninForm = () => {
     )
 }
 
-export default SigninForm
+export default SigninForm;

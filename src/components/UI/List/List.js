@@ -24,7 +24,7 @@ const List = (props) => {
     
     return (
         <div className={styles.list}>
-            <span className={styles['list-title']}>Continue to Watch</span>
+            <span className={styles['list-title']}>{props.title}</span>
             <div className={styles.wrapper}>
                 {
                     isMoved &&
@@ -41,8 +41,6 @@ const List = (props) => {
                                 key={movie.id}
                                 id={movie.id}
                                 poster={movie.poster_path}
-                                title={movie.original_title}
-                                rate={movie.vote_average}
                             />
                         ))
                     }

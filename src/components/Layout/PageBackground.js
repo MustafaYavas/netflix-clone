@@ -8,4 +8,4 @@ const PageBackground = (props) => {
     )
 }
 
-export default PageBackground
+export default PageBackground;

@@ -1,6 +1,6 @@
 import styles from './Featured.module.css';
-import home from '../../../assets/home2.jpg'
-import title from '../../../assets/title2.png'
+import home from '../../../assets/home.jpg'
+import title from '../../../assets/title.png'
 
 import { FaPlay } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';

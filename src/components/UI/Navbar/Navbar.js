@@ -37,6 +37,7 @@ const Navbar = () => {
                     <img 
                         src={logo}
                         alt='logo' 
+                        onClick={() => {navigate('/browse')}}
                     />
                     <span onClick={() => { navigate('/browse') }}>Home</span>
                     <span>TV Shows</span>

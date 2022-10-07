@@ -23,7 +23,6 @@ const MyList = () => {
         
     }, [movieList])
 
-    console.log(movies)
     return (
         <div className={styles['my-list']}>
             <Navbar />

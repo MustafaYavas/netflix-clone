@@ -14,7 +14,7 @@ const ListItem = (props) => {
     const user = useSelector(state => state.user);
 
     const addToListHandler = () => {
-        addMovie(props.id, user.email, dispatch)
+        addMovie(props.id, user.email, dispatch);
     }
 
     return (

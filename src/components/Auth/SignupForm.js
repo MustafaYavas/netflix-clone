@@ -50,8 +50,8 @@ const SignupForm = () => {
     }
 
     const signupHandler = async() => {
-        createUser({email, password}, dispatch)
-        navigate('/browse')
+        createUser({email, password}, dispatch);
+        navigate('/browse');
     }
 
     return (
@@ -110,4 +110,4 @@ const SignupForm = () => {
     )
 }
 
-export default SignupForm
+export default SignupForm;
