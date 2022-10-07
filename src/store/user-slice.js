@@ -24,6 +24,11 @@ const userSlice = createSlice({
             state.movieList = action.payload.movieList;
             state.isSignin = true;
         },
+        signoutUser(state) {
+            state.email = null;
+            state.movieList = [];
+            state.isSignin = false;
+        },
         addMovieToList(state, action) {
             const movieId = action.payload;
             const isExist = state.movieList.find((item) => (item === movieId));

@@ -7,14 +7,21 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { BsPencil, BsPerson, BsQuestionCircle } from 'react-icons/bs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../../store/user-slice';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
         return () => window.onscroll = null;
+    }
+
+    const signoutHandler = () => {
+        dispatch(userActions.signoutUser())
     }
 
     return (
@@ -46,7 +53,7 @@ const Navbar = () => {
                             <span><BsPencil className={styles['option-icons']}/>Manage Profiles</span>
                             <span><BsPerson className={styles['option-icons']}/>Account</span>
                             <span><BsQuestionCircle className={styles['option-icons']}/>Help Center</span>
-                            <p>Sign out of Netflix</p>
+                            <p onClick={signoutHandler}>Sign out of Netflix</p>
                         </div>
                     </div>
                 </div>
