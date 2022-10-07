@@ -7,13 +7,15 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { BsPencil, BsPerson, BsQuestionCircle } from 'react-icons/bs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../store/user-slice';
+import { deleteUser } from '../../../store/userApiCalls';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -22,6 +24,10 @@ const Navbar = () => {
 
     const signoutHandler = () => {
         dispatch(userActions.signoutUser())
+    }
+
+    const deleteAccountHandler = () => {
+        deleteUser(user.email, dispatch);
     }
 
     return (
@@ -53,7 +59,10 @@ const Navbar = () => {
                             <span><BsPencil className={styles['option-icons']}/>Manage Profiles</span>
                             <span><BsPerson className={styles['option-icons']}/>Account</span>
                             <span><BsQuestionCircle className={styles['option-icons']}/>Help Center</span>
-                            <p onClick={signoutHandler}>Sign out of Netflix</p>
+                            <div>
+                                <p onClick={signoutHandler}>Sign out of Netflix</p>
+                                <p onClick={deleteAccountHandler}>Delete Account</p>
+                            </div>
                         </div>
                     </div>
                 </div>

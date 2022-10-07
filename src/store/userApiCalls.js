@@ -125,3 +125,38 @@ export const removeMovie = async(movie, user, dispatch) => {
         console.log(error);
     }
 }
+
+export const deleteUser = async(user, dispatch) => {
+    try {
+        const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
+            method: 'GET',
+            headers: {
+                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+            }
+        });
+        const datas = await res.json();
+        let rowId = '';
+        datas.data.rows.forEach(row => {
+            if(row.columns[2].cell_value === user) rowId = row.row_id;           
+        })
+        
+        await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk',
+            },
+            body: JSON.stringify(
+                {
+                    "row_ids": [
+                        rowId
+                    ]
+                }
+            )
+        })
+
+        dispatch(userActions.signoutUser())
+    } catch (error) {
+        console.log(error);
+    }
+}

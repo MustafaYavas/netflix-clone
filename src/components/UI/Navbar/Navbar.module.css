@@ -77,12 +77,16 @@
     margin-right: 1rem;
 }
 
-.options p {
+.options div {
     text-align: center;
     padding: 1rem 0 0 0;
     margin: .5rem 0 0 0;
     border-top: 1px solid rgb(211, 208, 208);
     cursor: pointer;
+}
+
+.options div p {
+    margin: 0;
 }
 
 .options p:hover {
