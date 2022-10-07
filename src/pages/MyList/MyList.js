@@ -2,12 +2,18 @@ import styles from './MyList.module.css';
 import Navbar from '../../components/UI/Navbar/Navbar';
 import MovieCard from '../../components/UI/Card/MovieCard';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { AiOutlineUndo } from 'react-icons/ai';
+import { addMovie } from '../../store/userApiCalls';
 
 const MyList = () => {
-    const { movieList } = useSelector(state => state.user);
+    const { movieList, email } = useSelector(state => state.user);
     const [movies, setMovies] = useState([]);
+    const [isRemoved, setIsRemoved] = useState(false);
+    const [removedMovie, setRemovedMovie] = useState(null);
+    const [lastRemovedMovie, setLastRemovedMovie] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getMovies = async() => {
@@ -22,7 +28,25 @@ const MyList = () => {
         }
         getMovies();
         
-    }, [movieList])
+    }, [movieList]);
+
+    const showMessage = (movie, id) => {
+        setIsRemoved(true);
+        setRemovedMovie(movie);     // movie title
+        setLastRemovedMovie(id);    // movie id
+
+        const timer = setTimeout(() => {
+            setIsRemoved(false);
+        }, 5000)
+
+        return (() => {
+            clearTimeout(timer);
+        })
+    }
+
+    const undoRemove = () => {
+        addMovie(lastRemovedMovie, email, dispatch)
+    }
 
     return (
         <div className={styles['my-list']}>
@@ -36,8 +60,10 @@ const MyList = () => {
                             index={i}
                             key={movie.id}
                             id={movie.id}
+                            title={movie.original_title}
                             poster={movie.poster_path}
                             genres={movie.genres}
+                            onShowMessage={showMessage}
                         />
                     ))
                 }
@@ -45,7 +71,22 @@ const MyList = () => {
 
             {
                 movies.length === 0 &&
-                <p className='text-center text-secondary fs-4'>You haven't added ant titles to your list yet.</p>
+                <p className='text-center text-secondary fs-4'>You haven't added any titles to your list yet.</p>
+            }
+
+            {
+                isRemoved &&
+                <div className={styles['remove-message']}>
+                    <div>
+                        <span className='fw-bolder'>{removedMovie}</span> has been removed from My List
+                    </div>
+                    <span 
+                        className={styles['info-button']}
+                        onClick={undoRemove}
+                    >
+                        <AiOutlineUndo /> Undo
+                    </span>
+                </div>
             }
         </div>  
     )

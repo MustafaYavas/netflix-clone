@@ -1,6 +1,7 @@
 import styles from './SignupForm.module.css';
 import { createUser } from '../../store/userApiCalls';
 import { userActions } from '../../store/user-slice';
+import Spinner from '../UI/LoadingSpinner/Spinner';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +13,7 @@ const SignupForm = () => {
     const [password, setPassword] = useState('');
     const [showPasswordInput, setShowPasswordInput] = useState(false);
     const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -26,7 +28,7 @@ const SignupForm = () => {
 
     const checkUserHandler = async() => {
         if(email.length === 0) return setError(true);
-
+        setIsLoading(true);
         try {
             const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
                 method: 'GET',
@@ -44,9 +46,10 @@ const SignupForm = () => {
             })
             setShowPasswordInput(true);
         } catch (error) {
-            console.log('Something went wrong while signing up!')
+            console.log('Something went wrong while signing up!');
+            setIsLoading(false);
         }
-        
+        setIsLoading(false);
     }
 
     const signupHandler = async() => {
@@ -84,8 +87,8 @@ const SignupForm = () => {
                         className={`col-5 col-lg-3 ${styles.button}`}
                         onClick={checkUserHandler}
                     >
-                        Get Started
-                        <MdKeyboardArrowRight />
+                        { isLoading ? <Spinner /> : 'Get Started'}
+                        { !isLoading && <MdKeyboardArrowRight />}
                     </button>
                     }
             </div>

@@ -15,3 +15,39 @@
     padding: 0 3rem;
     display: flex;
 }
+
+.remove-message {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    bottom: 25px;
+    width: fit-content;
+    background-color: white;
+    color: black;
+    border-radius: 2rem;
+    padding: .5rem 2rem;
+    text-align: center;
+    display: flex;
+    justify-self: space-between;
+    align-items: center;
+}
+
+.remove-message .info-button {
+    margin-left: 5rem;
+    padding: .25rem .5rem;
+    border-radius: 1rem;
+    color: rgb(138, 137, 137);
+    font-weight: 600;
+}
+
+.remove-message .info-button:hover {
+    background-color: rgb(185, 184, 184);
+    cursor: pointer;
+}
+
+.remove-message .info-button svg {
+    margin-bottom: 2px;
+    margin-right: 5px;
+}

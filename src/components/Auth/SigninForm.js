@@ -4,6 +4,7 @@ import { userActions } from '../../store/user-slice';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from '../UI/LoadingSpinner/Spinner';
 
 const SigninForm = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const SigninForm = () => {
     const [emailEmptyWarn, setEmailEmptyWarn] = useState(false);
     const [passwordEmptyWarn, setPasswordEmptyWarn] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     
     const changeEmailHandler = (e) => {
         if(e.target.value.length === 0) setEmailEmptyWarn(true)
@@ -34,7 +36,7 @@ const SigninForm = () => {
         
         let userInfos = null;
         let userList = null;
-
+        setIsLoading(true);
         try {
             const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
                 method: 'GET',
@@ -87,9 +89,10 @@ const SigninForm = () => {
                         </span>
                     </>
                 )
-            }            
+            }   
+            setIsLoading(false);         
         }
-        
+        setIsLoading(false);
     }
 
     const navigateHandler = () => {
@@ -147,7 +150,7 @@ const SigninForm = () => {
                     className={styles.button}
                     onClick={signinHandler}
                 >
-                    Sign In
+                    { isLoading ? <Spinner /> : 'Sign In'}
                 </button>
             </div>
 
