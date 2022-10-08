@@ -29,13 +29,38 @@
 
 .left img {
     height: 3rem;
-    margin-right: 3rem;
+    margin-right: 2rem;
     cursor: pointer;
 }
 
-.left span {
+.left .nav-links span {
     margin-right: 1.5rem;
     cursor: pointer;
+}
+
+.browse .browse-options {
+    display: none; 
+    text-align: center;
+    background-color: rgba(20, 20, 20, .5);
+}
+
+.browse .browse-options span {
+    padding: 1rem;
+}
+
+.browse .browse-options span:hover {
+    background-color: rgba(20, 20, 20, .7);
+    height: 100%;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.browse:hover .browse-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 20%;
+    border-top: 2px solid rgb(211, 208, 208);
 }
 
 .right {
@@ -44,13 +69,19 @@
 }
 
 .right .icon {
-    margin: 0 1rem;
+    margin: 1rem 1rem;
     cursor: pointer;
+    font-size: 1.25rem;
 }
 
 .right img {
     border-radius: .25rem;
     cursor: pointer;
+}
+
+.right .profile:hover .icon{
+    transform: rotate(180deg);
+    transition: .25s ease-in-out;
 }
 
 .right .profile:hover .options{
@@ -64,7 +95,7 @@
     background-color: #141414;
     display: none;
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     right: 4rem;
     padding: 1rem; 
 }

@@ -37,10 +37,10 @@ const Browse = () => {
         <div className={styles.browse}>
             <Navbar />
             <Featured />
-            <List movies={popularMovies} title={'Popular'}/>
-            <List movies={topRatedMovies} title={'Top Rated'}/>
-            <List movies={playingMovies} title={'Playing'}/>
-            <List movies={upcomingMovies} title={'Upcımşng'}/>
+            <List movies={popularMovies} title={'Top 10 Movies'}/>
+            <List movies={topRatedMovies} title={'Trending Now'}/>
+            <List movies={playingMovies} title={'New Releases'}/>
+            <List movies={upcomingMovies} title={'Only on Netflix'}/>
         </div>
     )
 }
