@@ -33,7 +33,7 @@ const SignupForm = () => {
             const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
                 method: 'GET',
                 headers: {
-                    'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                    'ApiKey': process.env.REACT_APP_DB_KEY
                 }
             });
 

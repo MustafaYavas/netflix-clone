@@ -6,7 +6,7 @@ export const createUser = async(user, dispatch) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk',
+                'ApiKey': process.env.REACT_APP_DB_KEY,
             },
             body: JSON.stringify(
                 {
@@ -58,7 +58,7 @@ export const addMovie = async(movie, user, dispatch) => {
         const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'GET',
             headers: {
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                'ApiKey': process.env.REACT_APP_DB_KEY
             }
         });
         const datas = await res.json();
@@ -102,7 +102,7 @@ export const removeMovie = async(movie, user, dispatch) => {
         const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'GET',
             headers: {
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                'ApiKey': process.env.REACT_APP_DB_KEY
             }
         });
         const datas = await res.json();
@@ -144,7 +144,7 @@ export const deleteUser = async(user, dispatch) => {
         const res = await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'GET',
             headers: {
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk'
+                'ApiKey': process.env.REACT_APP_DB_KEY
             }
         });
         const datas = await res.json();
