@@ -13,29 +13,30 @@ const App = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+    // useEffect(() => {   // If the expiration date has not expired, let the user sign in
+    //     const datas = JSON.parse(localStorage.getItem('userData'));
+    //     console.log(datas)
+    //     if(datas && datas.user && new Date(datas.expiration) > new Date()) {
+    //         dispatch(userActions.signinUser({
+    //             email: datas.user,
+    //             movieList: datas.movieList,
+    //             expDate: new Date(datas.expiration)
+    //         }));
+    //     }
+    // }, [dispatch]);
 
-    useEffect(() => {   // If the expiration date has not expired, let the user sign in
-        const datas = JSON.parse(localStorage.getItem('userData'));
-        if(datas && datas.user && new Date(datas.expiration) > new Date()) {
-            dispatch(userActions.signinUser({
-                email: datas.user,
-                movieList: datas.userList,
-                expDate: new Date(datas.expiration)
-            }));
-        }
-    }, [dispatch]);
-
-    useEffect(() => {   // sign out after expiration date
-        if(user.email && user.expDate){
-            const remainingTime = user.expDate.getTime() - new Date().getTime();
-            logoutTimer = setTimeout(() => {
-                dispatch(userActions.signoutUser());
-                navigate('/signup')
-            }, [remainingTime])
-        } else {
-            clearTimeout(logoutTimer);
-        }
-    }, [user.email, dispatch, user.expDate, navigate]);
+    // useEffect(() => {   // sign out after expiration date
+    //     if(user.email && user.expDate){
+    //         const remainingTime = user.expDate.getTime() - new Date().getTime();
+    //         logoutTimer = setTimeout(() => {
+    //             dispatch(userActions.signoutUser());
+    //             navigate('/signup')
+    //         }, [remainingTime])
+    //     } else {
+    //         clearTimeout(logoutTimer);
+    //     }
+    // }, [user.email, dispatch, user.expDate, navigate]);
 
     return (
         <Routes>

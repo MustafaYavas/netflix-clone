@@ -15,7 +15,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
-            state.expDate = action.payload.authExpDate;
+            state.expDate = action.payload.expDate;
         },
         setSignin(state, action) {  // Used to autocomplete the e-mail part on the sign-in page
             state.isSignin = false;
@@ -25,7 +25,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
-            state.expDate = action.payload.authExpDate;
+            state.expDate = action.payload.expDate;
         },
         signoutUser(state) {
             state.email = null;

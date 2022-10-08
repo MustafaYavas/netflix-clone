@@ -30,6 +30,7 @@ const Navbar = () => {
 
     const deleteAccountHandler = () => {
         deleteUser(user.email, dispatch);
+        localStorage.removeItem('userData');
     }
 
     return (

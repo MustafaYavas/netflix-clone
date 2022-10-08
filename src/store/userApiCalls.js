@@ -74,7 +74,7 @@ export const addMovie = async(movie, user, dispatch) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk',
+                'ApiKey': process.env.REACT_APP_DB_KEY,
             },
             body: JSON.stringify({
                 "rows": [
@@ -117,7 +117,7 @@ export const removeMovie = async(movie, user, dispatch) => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk',
+                'ApiKey': process.env.REACT_APP_DB_KEY,
             },
             body: JSON.stringify({
                 "rows": [
@@ -157,7 +157,7 @@ export const deleteUser = async(user, dispatch) => {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'ApiKey': 'RTBLv1-OyJbLtAmvzBmntAdKvYlxvmPk',
+                'ApiKey': process.env.REACT_APP_DB_KEY,
             },
             body: JSON.stringify(
                 {
