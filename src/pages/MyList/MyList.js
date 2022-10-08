@@ -55,10 +55,9 @@ const MyList = () => {
             <div className={styles.container}>
                 {
                     movies.length !== 0  && 
-                    movies.map((movie, i) => (
+                    movies.map(movie => (
                         <MovieCard 
-                            index={i}
-                            key={movie.id}
+                            key={Math.random()}
                             id={movie.id}
                             title={movie.original_title}
                             poster={movie.poster_path}

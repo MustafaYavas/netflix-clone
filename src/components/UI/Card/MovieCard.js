@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const MovieCard = (props) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [isRemoved, setIsRemoved] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
