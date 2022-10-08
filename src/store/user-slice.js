@@ -10,12 +10,12 @@ const userSlice = createSlice({
     name: 'user',
     initialState: initialUserState,
     reducers: {
-        setUser(state, action) {
+        setUser(state, action) {    // to create a new user
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
         },
-        setSignin(state, action) {
+        setSignin(state, action) {  // Used to autocomplete the e-mail part on the sign-in page
             state.isSignin = false;
             state.email = action.payload;
         },
