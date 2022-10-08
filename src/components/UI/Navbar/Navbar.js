@@ -24,7 +24,8 @@ const Navbar = () => {
     }
 
     const signoutHandler = () => {
-        dispatch(userActions.signoutUser())
+        dispatch(userActions.signoutUser());
+        localStorage.removeItem('userData');
     }
 
     const deleteAccountHandler = () => {

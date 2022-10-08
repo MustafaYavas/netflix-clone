@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialUserState = {
     email: null,
     movieList: [],
-    isSignin: false
+    isSignin: false,
+    expDate: null
 }
 
 const userSlice = createSlice({
@@ -14,6 +15,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
+            state.expDate = action.payload.authExpDate;
         },
         setSignin(state, action) {  // Used to autocomplete the e-mail part on the sign-in page
             state.isSignin = false;
@@ -23,11 +25,13 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.movieList = action.payload.movieList;
             state.isSignin = true;
+            state.expDate = action.payload.authExpDate;
         },
         signoutUser(state) {
             state.email = null;
             state.movieList = [];
             state.isSignin = false;
+            state.expDate = null;
         },
         addMovieToList(state, action) {
             const movieId = action.payload;

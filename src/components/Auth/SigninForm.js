@@ -56,14 +56,24 @@ const SigninForm = () => {
 
             if(userInfos === null) throw new Error('Wrong email!');
             if(userInfos.columns[1].cell_value !== password) throw new Error('Wrong password!');
+
+            const authExpDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
             
             if(userInfos !== null) {
                 dispatch(userActions.signinUser({
                     email: userInfos.columns[2].cell_value,
                     movieList: userList,
+                    expDate: authExpDate
                 }));
             }
-
+            
+            localStorage.setItem('userData', JSON.stringify(
+                {
+                    user: userInfos.columns[2].cell_value,
+                    movieList: userList,
+                    expiration: authExpDate.toISOString()
+                }
+            ));
             navigate('/browse');
         } catch (error) {
             if(error.message === 'Wrong password!') {

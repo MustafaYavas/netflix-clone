@@ -31,16 +31,27 @@ export const createUser = async(user, dispatch) => {
                 }
             )
         })
+
+        const authExpDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
         const newUser = {
             email: user.email,
-            movieList: []
+            movieList: [],
+            expDate: authExpDate
         }
+
+        localStorage.setItem('userData', JSON.stringify(
+            {
+                user: user.email,
+                movieList: [],
+                expiration: authExpDate.toISOString()
+            }
+        ));
+
         dispatch(userActions.setUser(newUser));
     } catch(err) {
         console.log('Something went wrong while creating new user!')
     }
 }
-
 
 export const addMovie = async(movie, user, dispatch) => {
     try {
