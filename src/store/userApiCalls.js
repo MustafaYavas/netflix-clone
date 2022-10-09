@@ -1,6 +1,14 @@
 import { userActions } from './user-slice';
 
+import bcrypt from 'bcryptjs';
+
 export const createUser = async(user, dispatch) => {
+    let hashedPassword;
+    try {
+        hashedPassword = await bcrypt.hash(user.password, 12);
+    } catch (error) {
+        return console.log(error);
+    }
     try {
         await fetch('https://api.retable.io/v1/public/retable/rPLEZcXBj1IBlrXs/data', {
             method: 'POST',
@@ -19,7 +27,7 @@ export const createUser = async(user, dispatch) => {
                                 },
                                 {
                                     "column_id": "dboK4av90BWKy9Ym",
-                                    "cell_data": user.password
+                                    "cell_data":  hashedPassword
                                 },
                                 {
                                     "column_id": "33pTqMgvanB4wvcm",

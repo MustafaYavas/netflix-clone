@@ -1,10 +1,11 @@
 import styles from './SinginForm.module.css';
 import { userActions } from '../../store/user-slice';
+import Spinner from '../UI/LoadingSpinner/Spinner';
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from '../UI/LoadingSpinner/Spinner';
+import bcrypt from 'bcryptjs';
 
 const SigninForm = () => {
     const dispatch = useDispatch();
@@ -55,7 +56,16 @@ const SigninForm = () => {
             })
 
             if(userInfos === null) throw new Error('Wrong email!');
-            if(userInfos.columns[1].cell_value !== password) throw new Error('Wrong password!');
+            
+            let isValidPassword = false;
+            try {
+                isValidPassword = await bcrypt.compare(password, userInfos.columns[1].cell_value);
+            } catch (error) {
+                throw new Error('Could not log you in. Please check your credentials and try again!')
+            }
+
+            if(!isValidPassword) throw new Error('Could not log you in. Invalid credentials!');
+            
 
             const authExpDate = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
             
