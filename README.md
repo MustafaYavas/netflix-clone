@@ -1,8 +1,11 @@
-# Netflix Clone
+# Netflix Clone :movie_camera:
 
 Netflix clone built with React.js
 
-## Installation
+### Demo
+[visit site](https://reactjs-netflix-clone-app.netlify.app)
+
+### Installation
 To run it locally, first you need to clone this project (or download)
 
 ```
