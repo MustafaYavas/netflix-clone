@@ -23,6 +23,7 @@ REACT_APP_DB_KEY=
 ```
 
 *You can get your API key for the first parameter [here.](https://www.themoviedb.org/)*
+
 *For the second parameter, visit [here,](https://app.retable.io/login) and create an account, then get your API key from the Account Overview tab in the upper right corner.*
 
 **If you don't want to deal with them, use the values below :)**
