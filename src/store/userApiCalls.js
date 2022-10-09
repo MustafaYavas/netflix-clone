@@ -99,7 +99,12 @@ export const addMovie = async(movie, user, dispatch) => {
             })
         })
 
-        dispatch(userActions.addMovieToList(movie))
+        const userLocalDatas = localStorage.getItem('userData');
+        let localDatas = JSON.parse(userLocalDatas);
+        localDatas.movieList.push(movie.toString());
+        localStorage.setItem('userData', JSON.stringify(localDatas))
+        
+        dispatch(userActions.addMovieToList(movie));
     } catch (error) {
         console.log(error);
     }
@@ -141,7 +146,13 @@ export const removeMovie = async(movie, user, dispatch) => {
                 ]
             })
         })
-        dispatch(userActions.removeMovieFromList(movie))
+
+        const userLocalDatas = localStorage.getItem('userData');
+        let localDatas = JSON.parse(userLocalDatas);
+        localDatas.movieList = newList;
+        localStorage.setItem('userData', JSON.stringify(localDatas))
+
+        dispatch(userActions.removeMovieFromList(movie));
     } catch (error) {
         console.log(error);
     }
